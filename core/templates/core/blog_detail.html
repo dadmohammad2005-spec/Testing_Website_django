@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }} - ProDjango{% endblock %}
+
+{% block content %}
+<div style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 60px 0; text-align: center; color: white;">
+    <div style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
+        <h1 style="font-size: 48px; margin-bottom: 20px;">{{ post.title }}</h1>
+        <div style="display: flex; justify-content: center; gap: 20px;">
+            <span><i class="fas fa-calendar"></i> {{ post.created_at|date:"F d, Y" }}</span>
+            <span><i class="fas fa-user"></i> {{ post.author.username }}</span>
+            <span><i class="fas fa-eye"></i> {{ post.views }} views</span>
+        </div>
+    </div>
+</div>
+
+<div style="max-width: 800px; margin: 50px auto; padding: 0 20px;">
+    <div style="background: white; border-radius: 15px; padding: 40px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+        {% if post.featured_image %}
+        <img src="{{ post.featured_image.url }}" style="width: 100%; border-radius: 10px; margin-bottom: 30px;">
+        {% endif %}
+        
+        <div style="font-size: 18px; line-height: 1.8;">
+            {{ post.content|linebreaks }}
+        </div>
+        
+        <div style="margin-top: 40px; text-align: center;">
+            <a href="{% url 'core:blog_list' %}" style="display: inline-block; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none;">← Back to Blog</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

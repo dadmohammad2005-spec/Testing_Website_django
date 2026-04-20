@@ -1,0 +1,501 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Our Services - ProDjango{% endblock %}
+
+{% block content %}
+<style>
+    /* Services Page Styles */
+    .services-page {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+        min-height: 100vh;
+    }
+    
+    .services-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 80px 0;
+        text-align: center;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .services-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+        background-size: cover;
+        opacity: 0.2;
+    }
+    
+    .services-header h1 {
+        font-size: 52px;
+        font-weight: 800;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    
+    .services-header p {
+        font-size: 20px;
+        opacity: 0.95;
+        position: relative;
+    }
+    
+    .service-card {
+        background: white;
+        border: 2px solid #e0e0e0;
+        border-radius: 20px;
+        padding: 35px 25px;
+        text-align: center;
+        transition: all 0.4s ease;
+        height: 100%;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    
+    .service-card:hover {
+        transform: translateY(-10px);
+        border-color: #667eea;
+        box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+    }
+    
+    .service-icon {
+        width: 90px;
+        height: 90px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        transition: all 0.3s ease;
+    }
+    
+    .service-card:hover .service-icon {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+    
+    .service-icon i {
+        font-size: 45px;
+        color: white;
+    }
+    
+    .service-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 15px;
+    }
+    
+    .service-description {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        font-size: 15px;
+    }
+    
+    .service-features {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+        text-align: left;
+    }
+    
+    .service-features li {
+        padding: 8px 0;
+        color: #555;
+        border-bottom: 1px dashed #e0e0e0;
+        display: flex;
+        align-items: center;
+    }
+    
+    .service-features li:last-child {
+        border-bottom: none;
+    }
+    
+    .service-features li i {
+        color: #667eea;
+        margin-right: 10px;
+        font-size: 14px;
+    }
+    
+    .service-price {
+        font-size: 32px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 20px 0;
+    }
+    
+    .service-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .service-btn:hover {
+        transform: translateX(5px);
+        gap: 12px;
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        color: white;
+    }
+    
+    .service-btn-outline {
+        background: transparent;
+        border: 2px solid #667eea;
+        color: #667eea;
+    }
+    
+    .service-btn-outline:hover {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+    
+    .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    
+    .section-title h2 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 15px;
+    }
+    
+    .section-title p {
+        font-size: 18px;
+        color: #666;
+    }
+    
+    .section-title .underline {
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        margin: 20px auto 0;
+        border-radius: 2px;
+    }
+    
+    .why-choose-card {
+        background: white;
+        border: 2px solid #e0e0e0;
+        border-radius: 15px;
+        padding: 25px;
+        text-align: center;
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+    
+    .why-choose-card:hover {
+        border-color: #667eea;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .why-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+    }
+    
+    .why-icon i {
+        font-size: 28px;
+        color: white;
+    }
+    
+    .cta-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 60px 0;
+        text-align: center;
+        color: white;
+        margin-top: 50px;
+    }
+    
+    .cta-section h2 {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+    
+    .cta-section p {
+        font-size: 18px;
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+    
+    .cta-btn {
+        display: inline-block;
+        background: white;
+        color: #667eea;
+        padding: 14px 40px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: all 0.3s ease;
+    }
+    
+    .cta-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        color: #764ba2;
+    }
+    
+    @media (max-width: 768px) {
+        .services-header h1 {
+            font-size: 36px;
+        }
+        
+        .services-header p {
+            font-size: 16px;
+        }
+        
+        .service-title {
+            font-size: 20px;
+        }
+        
+        .section-title h2 {
+            font-size: 28px;
+        }
+        
+        .service-price {
+            font-size: 26px;
+        }
+    }
+</style>
+
+<div class="services-page">
+    <!-- Header -->
+    <div class="services-header">
+        <div class="container">
+            <h1><i class="fas fa-cogs"></i> Our Premium Services</h1>
+            <p>What we offer to grow your business</p>
+        </div>
+    </div>
+    
+    <div class="container py-5">
+        <!-- Services Grid -->
+        <div class="row g-4">
+            <!-- Service 1 - Web Development -->
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="service-title">Web Development</h3>
+                    <p class="service-description">
+                        Modern responsive websites built with Django and Bootstrap. Custom solutions tailored to your business needs.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Responsive Design</li>
+                        <li><i class="fas fa-check-circle"></i> SEO Optimized</li>
+                        <li><i class="fas fa-check-circle"></i> Fast Performance</li>
+                        <li><i class="fas fa-check-circle"></i> Secure Code</li>
+                    </ul>
+                    <div class="service-price">$999</div>
+                    <a href="{% url 'core:contact' %}" class="service-btn">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Service 2 - Mobile Ready -->
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="service-title">Mobile Ready</h3>
+                    <p class="service-description">
+                        Fully responsive design that works perfectly on all devices - mobile, tablet, and desktop.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Mobile First Design</li>
+                        <li><i class="fas fa-check-circle"></i> Touch Friendly</li>
+                        <li><i class="fas fa-check-circle"></i> Fast Loading</li>
+                        <li><i class="fas fa-check-circle"></i> Cross Browser</li>
+                    </ul>
+                    <div class="service-price">$799</div>
+                    <a href="{% url 'core:contact' %}" class="service-btn">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Service 3 - Cloud Hosting -->
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3 class="service-title">Cloud Hosting</h3>
+                    <p class="service-description">
+                        Fast and secure cloud deployment solutions with 99.9% uptime guarantee and 24/7 support.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> 99.9% Uptime</li>
+                        <li><i class="fas fa-check-circle"></i> 24/7 Support</li>
+                        <li><i class="fas fa-check-circle"></i> Auto Scaling</li>
+                        <li><i class="fas fa-check-circle"></i> DDoS Protection</li>
+                    </ul>
+                    <div class="service-price">$599</div>
+                    <a href="{% url 'core:contact' %}" class="service-btn">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Second Row -->
+        <div class="row g-4 mt-4">
+            <!-- Service 4 - UI/UX Design -->
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="service-title">UI/UX Design</h3>
+                    <p class="service-description">
+                        Beautiful and intuitive interfaces that users love to interact with.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> User Research</li>
+                        <li><i class="fas fa-check-circle"></i> Wireframing</li>
+                        <li><i class="fas fa-check-circle"></i> Prototyping</li>
+                        <li><i class="fas fa-check-circle"></i> User Testing</li>
+                    </ul>
+                    <div class="service-price">$699</div>
+                    <a href="{% url 'core:contact' %}" class="service-btn">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Service 5 - SEO Optimization -->
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title">SEO Optimization</h3>
+                    <p class="service-description">
+                        Rank higher in search results and drive more organic traffic to your website.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Keyword Research</li>
+                        <li><i class="fas fa-check-circle"></i> On-page SEO</li>
+                        <li><i class="fas fa-check-circle"></i> Link Building</li>
+                        <li><i class="fas fa-check-circle"></i> Analytics</li>
+                    </ul>
+                    <div class="service-price">$499</div>
+                    <a href="{% url 'core:contact' %}" class="service-btn">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Service 6 - E-commerce -->
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="service-title">E-commerce</h3>
+                    <p class="service-description">
+                        Online stores that convert visitors into customers with secure payment integration.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Payment Gateway</li>
+                        <li><i class="fas fa-check-circle"></i> Inventory Management</li>
+                        <li><i class="fas fa-check-circle"></i> Shopping Cart</li>
+                        <li><i class="fas fa-check-circle"></i> Order Tracking</li>
+                    </ul>
+                    <div class="service-price">$1299</div>
+                    <a href="{% url 'core:contact' %}" class="service-btn">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Why Choose Us Section -->
+        <div class="section-title mt-5 pt-5">
+            <h2>Why Choose Us?</h2>
+            <p>What makes our services stand out</p>
+            <div class="underline"></div>
+        </div>
+        
+        <div class="row g-4 mt-3">
+            <div class="col-md-3">
+                <div class="why-choose-card">
+                    <div class="why-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h5>Fast Delivery</h5>
+                    <p class="text-muted small">On-time project delivery guaranteed</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="why-choose-card">
+                    <div class="why-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h5>Secure Solutions</h5>
+                    <p class="text-muted small">Enterprise-grade security</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="why-choose-card">
+                    <div class="why-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h5>24/7 Support</h5>
+                    <p class="text-muted small">Round-the-clock assistance</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="why-choose-card">
+                    <div class="why-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h5>Best Pricing</h5>
+                    <p class="text-muted small">Competitive rates guaranteed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Call to Action -->
+    <div class="cta-section">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Contact us today for a free consultation and quote</p>
+            <a href="{% url 'core:contact' %}" class="cta-btn">
+                Contact Us Now <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,144 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Home - ProDjango{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 100px 0; position: relative; overflow: hidden;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 text-white" data-aos="fade-right">
+                <h1 class="display-3 fw-bold mb-3">Welcome to <span style="color: #ffd700;">ProDjango</span></h1>
+                <p class="lead mb-4">Build amazing web applications with Python's premier web framework. Fast, secure, and scalable solutions for your business.</p>
+                <div class="mt-4">
+                    <a href="{% url 'core:services' %}" class="btn btn-light btn-lg px-4 me-2" style="border-radius: 50px;">
+                        <i class="fas fa-rocket"></i> Get Started
+                    </a>
+                    <a href="{% url 'core:contact' %}" class="btn btn-outline-light btn-lg px-4" style="border-radius: 50px;">
+                        <i class="fas fa-headset"></i> Contact Us
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&h=400&fit=crop" alt="Developer" class="img-fluid rounded-4 shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section with Background and Borders -->
+<section class="services-section py-5" style="background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="display-5 fw-bold" style="color: #333;">Our Services</h2>
+            <p class="lead text-muted">What we offer to grow your business</p>
+            <div style="width: 80px; height: 4px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin: 20px auto 0; border-radius: 2px;"></div>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Service 1 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-card" style="background: white; border: 2px solid #e0e0e0; border-radius: 20px; padding: 35px 25px; text-align: center; transition: all 0.4s ease; height: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.08);">
+                    <div class="service-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; transition: all 0.3s ease;">
+                        <i class="fas fa-code" style="font-size: 40px; color: white;"></i>
+                    </div>
+                    <h3 style="font-size: 24px; font-weight: 700; color: #333; margin-bottom: 15px;">Web Development</h3>
+                    <p style="color: #666; line-height: 1.6;">Modern responsive websites built with Django and Bootstrap.</p>
+                    <a href="{% url 'core:services' %}" class="btn-service" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: 600; margin-top: 20px; transition: all 0.3s ease;">Learn More →</a>
+                </div>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-card" style="background: white; border: 2px solid #e0e0e0; border-radius: 20px; padding: 35px 25px; text-align: center; transition: all 0.4s ease; height: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.08);">
+                    <div class="service-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; transition: all 0.3s ease;">
+                        <i class="fas fa-mobile-alt" style="font-size: 40px; color: white;"></i>
+                    </div>
+                    <h3 style="font-size: 24px; font-weight: 700; color: #333; margin-bottom: 15px;">Mobile Ready</h3>
+                    <p style="color: #666; line-height: 1.6;">Fully responsive design that works on all devices.</p>
+                    <a href="{% url 'core:services' %}" class="btn-service" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: 600; margin-top: 20px; transition: all 0.3s ease;">Learn More →</a>
+                </div>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-card" style="background: white; border: 2px solid #e0e0e0; border-radius: 20px; padding: 35px 25px; text-align: center; transition: all 0.4s ease; height: 100%; box-shadow: 0 5px 15px rgba(0,0,0,0.08);">
+                    <div class="service-icon" style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; transition: all 0.3s ease;">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 40px; color: white;"></i>
+                    </div>
+                    <h3 style="font-size: 24px; font-weight: 700; color: #333; margin-bottom: 15px;">Cloud Hosting</h3>
+                    <p style="color: #666; line-height: 1.6;">Fast and secure cloud deployment solutions.</p>
+                    <a href="{% url 'core:services' %}" class="btn-service" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: 600; margin-top: 20px; transition: all 0.3s ease;">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .service-card:hover {
+        transform: translateY(-10px);
+        border-color: #667eea !important;
+        box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2) !important;
+    }
+    
+    .service-card:hover .service-icon {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+    
+    .btn-service:hover {
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+    
+    @media (max-width: 768px) {
+        .hero-section {
+            text-align: center;
+            padding: 60px 0;
+        }
+        .display-3 {
+            font-size: 32px;
+        }
+    }
+</style>
+
+<!-- Latest News Section -->
+<section class="news-section py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="display-5 fw-bold" style="color: #333;">Latest News</h2>
+            <p class="lead text-muted">Stay updated with our blog</p>
+            <div style="width: 80px; height: 4px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin: 20px auto 0; border-radius: 2px;"></div>
+        </div>
+        
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card border-0 shadow-sm" style="border-radius: 15px; overflow: hidden;">
+                    {% if post.featured_image %}
+                    <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 200px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-image fa-3x" style="color: rgba(255,255,255,0.5);"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text text-muted">{{ post.excerpt|truncatewords:20 }}</p>
+                        <a href="{% url 'core:blog_detail' post.slug %}" class="btn btn-primary btn-sm">Read More →</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <i class="fas fa-newspaper fa-4x text-muted mb-3"></i>
+                <h3>No blog posts yet</h3>
+                <p class="text-muted">Check back soon for updates!</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

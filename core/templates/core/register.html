@@ -1,0 +1,326 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Register - ProDjango{% endblock %}
+
+{% block content %}
+<style>
+    .register-container {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        position: relative;
+        overflow: hidden;
+        padding: 50px 0;
+    }
+    
+    .register-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+        background-size: cover;
+        opacity: 0.2;
+    }
+    
+    .register-card {
+        background: white;
+        border-radius: 30px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .register-left {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 50px;
+        color: white;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+    }
+    
+    .register-left h2 {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+    
+    .register-left p {
+        font-size: 16px;
+        opacity: 0.9;
+        line-height: 1.6;
+    }
+    
+    .feature-list {
+        text-align: left;
+        margin-top: 30px;
+        list-style: none;
+        padding: 0;
+    }
+    
+    .feature-list li {
+        padding: 10px 0;
+    }
+    
+    .feature-list li i {
+        margin-right: 10px;
+        font-size: 18px;
+    }
+    
+    .register-right {
+        padding: 50px;
+    }
+    
+    .register-right h3 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    
+    .subtitle {
+        color: #666;
+        margin-bottom: 30px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 8px;
+        display: block;
+    }
+    
+    .input-icon {
+        position: relative;
+    }
+    
+    .input-icon i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #667eea;
+        font-size: 18px;
+    }
+    
+    .input-icon input {
+        width: 100%;
+        padding: 12px 15px 12px 45px;
+        border: 2px solid #e0e0e0;
+        border-radius: 12px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+    
+    .input-icon input:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    .register-btn {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+    }
+    
+    .register-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    }
+    
+    .login-link {
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
+    }
+    
+    .login-link a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    
+    .login-link a:hover {
+        color: #764ba2;
+    }
+    
+    .errorlist {
+        color: #dc3545;
+        list-style: none;
+        padding: 0;
+        margin: 5px 0 0 0;
+        font-size: 13px;
+    }
+    
+    @media (max-width: 768px) {
+        .register-left {
+            padding: 30px;
+        }
+        
+        .register-left h2 {
+            font-size: 28px;
+        }
+        
+        .register-right {
+            padding: 30px;
+        }
+        
+        .register-right h3 {
+            font-size: 24px;
+        }
+    }
+</style>
+
+<div class="register-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="register-card">
+                    <div class="row g-0">
+                        <!-- Left Side -->
+                        <div class="col-md-5">
+                            <div class="register-left">
+                                <i class="fas fa-user-plus" style="font-size: 60px; margin-bottom: 20px;"></i>
+                                <h2>Join Us Today!</h2>
+                                <p>Create your account and start your journey with us.</p>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check-circle"></i> Free account setup</li>
+                                    <li><i class="fas fa-check-circle"></i> Access to all features</li>
+                                    <li><i class="fas fa-check-circle"></i> Premium support</li>
+                                    <li><i class="fas fa-check-circle"></i> Regular updates</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Side - Register Form -->
+                        <div class="col-md-7">
+                            <div class="register-right">
+                                <h3>Create Account</h3>
+                                <p class="subtitle">Fill in the details to get started</p>
+                                
+                                <form method="post">
+                                    {% csrf_token %}
+                                    
+                                    {% if form.errors %}
+                                    <div class="alert alert-danger">
+                                        <strong>Please correct the following errors:</strong>
+                                        {% for field in form %}
+                                            {% for error in field.errors %}
+                                                <p class="mb-0">{{ field.label }}: {{ error }}</p>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>First Name</label>
+                                                <div class="input-icon">
+                                                    <i class="fas fa-user"></i>
+                                                    <input type="text" name="first_name" class="form-control" 
+                                                           value="{{ form.first_name.value|default:'' }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Last Name</label>
+                                                <div class="input-icon">
+                                                    <i class="fas fa-user"></i>
+                                                    <input type="text" name="last_name" class="form-control"
+                                                           value="{{ form.last_name.value|default:'' }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label>Username *</label>
+                                        <div class="input-icon">
+                                            <i class="fas fa-id-card"></i>
+                                            <input type="text" name="username" class="form-control" 
+                                                   placeholder="Choose a username" required
+                                                   value="{{ form.username.value|default:'' }}">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label>Email Address *</label>
+                                        <div class="input-icon">
+                                            <i class="fas fa-envelope"></i>
+                                            <input type="email" name="email" class="form-control" 
+                                                   placeholder="your@email.com" required
+                                                   value="{{ form.email.value|default:'' }}">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label>Password *</label>
+                                        <div class="input-icon">
+                                            <i class="fas fa-lock"></i>
+                                            <input type="password" name="password1" class="form-control" 
+                                                   id="password1" placeholder="Create a password" required>
+                                            <i class="fas fa-eye" style="position: absolute; right: 15px; left: auto; cursor: pointer;" 
+                                               onclick="togglePassword('password1')"></i>
+                                        </div>
+                                        <small class="text-muted">Password must be at least 8 characters</small>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label>Confirm Password *</label>
+                                        <div class="input-icon">
+                                            <i class="fas fa-lock"></i>
+                                            <input type="password" name="password2" class="form-control" 
+                                                   id="password2" placeholder="Confirm your password" required>
+                                            <i class="fas fa-eye" style="position: absolute; right: 15px; left: auto; cursor: pointer;" 
+                                               onclick="togglePassword('password2')"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <button type="submit" class="register-btn">
+                                        <i class="fas fa-user-plus"></i> Register Now
+                                    </button>
+                                </form>
+                                
+                                <div class="login-link">
+                                    Already have an account? <a href="{% url 'core:login' %}">Login Here</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function togglePassword(fieldId) {
+    const field = document.getElementById(fieldId);
+    const type = field.getAttribute('type') === 'password' ? 'text' : 'password';
+    field.setAttribute('type', type);
+}
+</script>
+{% endblock %}

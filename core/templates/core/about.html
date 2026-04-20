@@ -1,0 +1,509 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}About Us - ProDjango{% endblock %}
+
+{% block content %}
+<style>
+    .about-hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .about-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+        background-size: cover;
+        opacity: 0.2;
+    }
+    
+    .stat-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+    }
+    
+    .stat-number {
+        font-size: 48px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 10px;
+    }
+    
+    .mission-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 20px;
+        padding: 40px;
+        color: white;
+        text-align: center;
+    }
+    
+    .team-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+    
+    .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    
+    .team-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+    
+    .team-placeholder {
+        width: 100%;
+        height: 300px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .team-placeholder i {
+        font-size: 80px;
+        color: rgba(255,255,255,0.5);
+    }
+    
+    .value-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+    
+    .value-icon {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+    }
+    
+    .value-icon i {
+        font-size: 30px;
+        color: white;
+    }
+    
+    .testimonial-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 20px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        position: relative;
+    }
+    
+    .testimonial-card::before {
+        content: '"';
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 60px;
+        color: #667eea;
+        opacity: 0.2;
+        font-family: serif;
+    }
+    
+    .client-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    
+    @media (max-width: 768px) {
+        .stat-number {
+            font-size: 36px;
+        }
+        
+        .mission-card {
+            padding: 30px 20px;
+        }
+        
+        .team-image, .team-placeholder {
+            height: 250px;
+        }
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="about-hero text-white py-5">
+    <div class="container py-5">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <h1 class="display-3 fw-bold mb-3">About ProDjango</h1>
+                <p class="lead mb-0">We craft digital experiences that matter</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Company Story Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <h2 class="display-5 fw-bold mb-4" style="color: #333;">Our Story</h2>
+                <p class="lead text-muted mb-4">Founded in 2024, ProDjango has been at the forefront of web development innovation.</p>
+                <p class="text-muted mb-3">We are a team of passionate developers, designers, and innovators dedicated to creating amazing web applications using Django framework. Our journey began with a simple idea: to provide high-quality, scalable web solutions that help businesses grow online.</p>
+                <p class="text-muted">With years of experience and hundreds of successful projects, we've built a reputation for excellence, reliability, and innovation in the web development industry.</p>
+                
+                <div class="row mt-5">
+                    <div class="col-6">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle fa-2x text-primary me-3"></i>
+                            <div>
+                                <h4 class="mb-0">500+</h4>
+                                <p class="text-muted mb-0">Projects Completed</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-users fa-2x text-primary me-3"></i>
+                            <div>
+                                <h4 class="mb-0">50+</h4>
+                                <p class="text-muted mb-0">Happy Clients</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-code fa-2x text-primary me-3"></i>
+                            <div>
+                                <h4 class="mb-0">10+</h4>
+                                <p class="text-muted mb-0">Expert Developers</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-trophy fa-2x text-primary me-3"></i>
+                            <div>
+                                <h4 class="mb-0">25+</h4>
+                                <p class="text-muted mb-0">Awards Won</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6" data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=500&fit=crop" 
+                     alt="Our Team" class="img-fluid rounded-4 shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission & Vision -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="mission-card h-100">
+                    <i class="fas fa-bullseye fa-3x mb-4"></i>
+                    <h3 class="mb-3">Our Mission</h3>
+                    <p class="mb-0">To empower businesses with cutting-edge web solutions that drive growth, innovation, and success in the digital age.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="mission-card h-100" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">
+                    <i class="fas fa-eye fa-3x mb-4"></i>
+                    <h3 class="mb-3">Our Vision</h3>
+                    <p class="mb-0">To become a global leader in Django development, recognized for excellence, innovation, and client satisfaction.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Company Values -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="display-5 fw-bold" style="color: #333;">Our Core Values</h2>
+            <p class="lead text-muted">What makes us different</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Passion</h4>
+                    <p class="text-muted">We love what we do and put our heart into every project.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4>Innovation</h4>
+                    <p class="text-muted">We embrace new technologies and creative solutions.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4>Integrity</h4>
+                    <p class="text-muted">We believe in transparency and honest communication.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>Excellence</h4>
+                    <p class="text-muted">We strive for perfection in everything we do.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>Collaboration</h4>
+                    <p class="text-muted">We work together with clients to achieve the best results.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Growth</h4>
+                    <p class="text-muted">We continuously learn and improve our skills.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="py-5 bg-primary">
+    <div class="container">
+        <div class="row g-4 text-center text-white">
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-card bg-white">
+                    <div class="stat-number">500+</div>
+                    <p class="text-muted mb-0">Projects Delivered</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-card bg-white">
+                    <div class="stat-number">50+</div>
+                    <p class="text-muted mb-0">Happy Clients</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-card bg-white">
+                    <div class="stat-number">10+</div>
+                    <p class="text-muted mb-0">Team Members</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="stat-card bg-white">
+                    <div class="stat-number">24/7</div>
+                    <p class="text-muted mb-0">Support Available</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="display-5 fw-bold" style="color: #333;">Meet Our Team</h2>
+            <p class="lead text-muted">The brilliant minds behind our success</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="team-card">
+                    <div class="team-placeholder">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="p-4">
+                        <h4>Ali Raza</h4>
+                        <p class="text-primary mb-2">CEO & Founder</p>
+                        <p class="text-muted small">10+ years of experience in web development</p>
+                        <div class="mt-3">
+                            <a href="#" class="text-muted me-2"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-muted me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-muted"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="team-card">
+                    <div class="team-placeholder">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="p-4">
+                        <h4>Sara Khan</h4>
+                        <p class="text-primary mb-2">Lead Developer</p>
+                        <p class="text-muted small">Expert in Django & Python</p>
+                        <div class="mt-3">
+                            <a href="#" class="text-muted me-2"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-muted me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-muted"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="team-card">
+                    <div class="team-placeholder">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="p-4">
+                        <h4>Ahmed Hussain</h4>
+                        <p class="text-primary mb-2">UI/UX Designer</p>
+                        <p class="text-muted small">Creative designer with 8+ years experience</p>
+                        <div class="mt-3">
+                            <a href="#" class="text-muted me-2"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-muted me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-muted"><i class="fab fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="display-5 fw-bold" style="color: #333;">What Our Clients Say</h2>
+            <p class="lead text-muted">Don't just take our word for it</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="testimonial-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="https://randomuser.me/api/portraits/men/1.jpg" class="client-image me-3" alt="Client">
+                        <div>
+                            <h5 class="mb-0">John Smith</h5>
+                            <small class="text-muted">CEO, TechCorp</small>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-0">"ProDjango delivered an exceptional website that exceeded our expectations. Their team is professional, responsive, and highly skilled."</p>
+                    <div class="mt-2">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="testimonial-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="https://randomuser.me/api/portraits/women/2.jpg" class="client-image me-3" alt="Client">
+                        <div>
+                            <h5 class="mb-0">Emily Brown</h5>
+                            <small class="text-muted">Marketing Director</small>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-0">"Working with ProDjango was a pleasure. They understood our requirements perfectly and delivered on time. Highly recommended!"</p>
+                    <div class="mt-2">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="testimonial-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="https://randomuser.me/api/portraits/men/3.jpg" class="client-image me-3" alt="Client">
+                        <div>
+                            <h5 class="mb-0">David Wilson</h5>
+                            <small class="text-muted">Business Owner</small>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-0">"The team at ProDjango transformed our online presence. Our website now looks professional and performs exceptionally well."</p>
+                    <div class="mt-2">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="display-5 fw-bold mb-3" style="color: #333;">Ready to Start Your Project?</h2>
+                <p class="lead text-muted mb-4">Let's create something amazing together</p>
+                <a href="{% url 'core:contact' %}" class="btn btn-primary btn-lg px-5">
+                    Get In Touch <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
